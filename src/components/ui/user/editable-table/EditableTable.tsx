@@ -2,8 +2,7 @@
 import { RootState } from '@/store/store';
 import { IUser } from '@/types/user.interface';
 import type { TablePaginationConfig, TableProps } from 'antd';
-import { Form, Table } from 'antd';
-import Image from 'next/image';
+import { Avatar, Form, Table } from 'antd';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -51,19 +50,19 @@ const EditableTable: React.FC = () => {
       inputType: 'url',
       editable: true,
       render: (avatar: IUser['avatar']) => {
-        return <Image src={avatar} alt='user avatar' width={40} height={40} />;
+        return <Avatar src={avatar} alt='user avatar' size='large' />;
       },
     },
     {
       title: 'name',
       dataIndex: 'name',
-      width: '100%',
+      width: '50%',
       editable: true,
     },
     {
       title: 'lastName',
       dataIndex: 'lastName',
-      width: '100%',
+      width: '50%',
       editable: true,
     },
     {
@@ -117,23 +116,21 @@ const EditableTable: React.FC = () => {
   };
 
   return (
-    <div className='container'>
-      <Form form={form} component={false}>
-        <Table
-          loading={loading}
-          components={{
-            body: {
-              cell: EditableCell,
-            },
-          }}
-          bordered
-          dataSource={users}
-          columns={mergedColumns}
-          rowClassName='editable-row'
-          pagination={paginationConfig}
-        />
-      </Form>
-    </div>
+    <Form form={form} component={false}>
+      <Table
+        loading={loading}
+        components={{
+          body: {
+            cell: EditableCell,
+          },
+        }}
+        bordered
+        dataSource={users}
+        columns={mergedColumns}
+        rowClassName='editable-row'
+        pagination={paginationConfig}
+      />
+    </Form>
   );
 };
 

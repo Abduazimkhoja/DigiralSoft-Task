@@ -31,13 +31,13 @@ const OperationButtons: FC<OperationButtonsProps> = ({
           <Button
             onClick={onSave}
             type='primary'
-            icon={<IconSave width='18' height='auto' color='fff' />}
+            icon={<IconSave width='18' height='18px' color='fff' />}
             size='middle'
           />
           <Popconfirm title='Sure to cancel?' onConfirm={onCancel}>
             <Button
               type='primary'
-              icon={<IconCancle width='18' height='auto' color='fff' />}
+              icon={<IconCancle width='18' height='18px' color='fff' />}
               size='middle'
               style={{ backgroundColor: '#db5e5e' }}
             />
@@ -49,14 +49,14 @@ const OperationButtons: FC<OperationButtonsProps> = ({
             disabled={editingId !== ''}
             onClick={onEdit}
             type='primary'
-            icon={<IconEdit width='18' height='auto' color='fff' />}
+            icon={<IconEdit width='18' height='18px' color='fff' />}
             size='middle'
           />
           <Popconfirm title='Sure to cancel?' onConfirm={onDelete}>
             <Button
               disabled={editingId !== ''}
               type='primary'
-              icon={<IconTrash width='18' height='auto' color='fff' />}
+              icon={<IconTrash width='18' height='18px' color='fff' />}
               size='middle'
               style={{ backgroundColor: '#db5e5e' }}
             />
