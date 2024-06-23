@@ -1,26 +1,18 @@
 'use client';
 import { AppDispatch } from '@/store/store';
 import { createUser, fetchUsers } from '@/store/user/user.acitons';
+import { userSchema } from '@/validation/userValidation';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Col, Drawer, Form, Input, Row } from 'antd';
 import { Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import * as Yup from 'yup';
 
 const initialValues = {
   name: '',
   lastName: '',
   avatar: '',
 };
-
-const validationSchema = Yup.object({
-  name: Yup.string().required('Please enter the name'),
-  lastName: Yup.string().required('Please enter the last name'),
-  avatar: Yup.string()
-    .url('Please enter a valid URL')
-    .required('Please enter the avatar path'),
-});
 
 const UserDrawer: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -58,7 +50,7 @@ const UserDrawer: React.FC = () => {
       >
         <Formik
           initialValues={initialValues}
-          validationSchema={validationSchema}
+          validationSchema={userSchema}
           onSubmit={handleSubmit}
         >
           {({

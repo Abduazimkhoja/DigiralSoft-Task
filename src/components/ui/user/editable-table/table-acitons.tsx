@@ -1,5 +1,9 @@
 import { AppDispatch } from '@/store/store';
-import { deleteUserById, fetchUsers } from '@/store/user/user.acitons';
+import {
+  deleteUserById,
+  editUserById,
+  fetchUsers,
+} from '@/store/user/user.acitons';
 import { setUsers } from '@/store/user/user.slice';
 import { IUser } from '@/types/user.interface';
 import { FormInstance } from 'antd/es/form';
@@ -30,14 +34,13 @@ export const useUserTableActions = ({
     },
 
     onEdit(record: Partial<IUser>) {
-      // form.setFieldsValue({
-      //   name: '',
-      //   avatar: '',
-      //   lastName: '',
-      //   ...record,
-      // });
-      console.log(record);
-      
+      form.setFieldsValue({
+        name: '',
+        avatar: '',
+        lastName: '',
+        ...record,
+      });
+
       setEditingId(String(record.id));
     },
 
@@ -45,26 +48,28 @@ export const useUserTableActions = ({
       setEditingId('');
     },
 
-    async onSave(id: string) {
+    async onSave(key: string) {
       try {
-        // const row = (await form.validateFields()) as IUser;
-        console.log(id);
+        const row = (await form.validateFields()) as IUser;
 
-        // const newData = [...users];
-        // const index = newData.findIndex((item) => key === item.id);
-        // if (index > -1) {
-        //   const item = newData[index];
-        //   newData.splice(index, 1, {
-        //     ...item,
-        //     ...row,
-        //   });
-        //   setUsers(newData);
-        //   setEditingId('');
-        // } else {
-        //   newData.push(row);
-        //   setUsers(newData);
-        //   setEditingId('');
-        // }
+        const newData = [...users];
+        const index = newData.findIndex((item) => key === item.id);
+        if (index > -1) {
+          const item = newData[index];
+          newData.splice(index, 1, {
+            ...item,
+            ...row,
+          });
+
+          dispatch(editUserById({ ...item, ...row }));
+
+          setUsers(newData);
+          setEditingId('');
+        } else {
+          newData.push(row);
+          setUsers(newData);
+          setEditingId('');
+        }
       } catch (errInfo) {
         console.log('Validate Failed:', errInfo);
       }
