@@ -1,6 +1,8 @@
 import '@/assets/styles/globals.css';
 import '@/assets/styles/reset.css';
-import StoreProvider from '@/store/StoreProvider';
+import Providers from '@/providers/Providers';
+import { Layout } from 'antd';
+import { Content, Footer, Header } from 'antd/es/layout/layout';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -17,14 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <StoreProvider>
+    <Providers>
       <html lang='en'>
         <body className={inter.className}>
-          <div className='wrapper'>
-            <main>{children}</main>
-          </div>
+          <Layout style={{ minHeight: '100%' }}>
+            <Header></Header>
+            <Content>{children}</Content>
+            <Footer></Footer>
+          </Layout>
         </body>
       </html>
-    </StoreProvider>
+    </Providers>
   );
 }

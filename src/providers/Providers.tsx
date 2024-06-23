@@ -1,14 +1,18 @@
 'use client';
-import { makeStore } from '@/store/store';
+import StoreProvider from '@/store/StoreProvider';
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { FC, ReactNode } from 'react';
-import { Provider } from 'react-redux';
 
 interface IProviders {
   children: ReactNode;
 }
 
 const Providers: FC<IProviders> = ({ children }) => {
-  return <Provider store={makeStore()}>{children}</Provider>;
+  return (
+    <StoreProvider>
+      <AntdRegistry>{children}</AntdRegistry>
+    </StoreProvider>
+  );
 };
 
 export default Providers;
