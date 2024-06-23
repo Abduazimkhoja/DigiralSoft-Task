@@ -42,6 +42,7 @@ const EditableTable: React.FC = () => {
       width: '20px',
       editable: false,
       alignType: 'center',
+      sorter: (a: IUser, b: IUser) => parseInt(a.id) - parseInt(b.id),
     },
     {
       title: 'avatar',
@@ -58,12 +59,14 @@ const EditableTable: React.FC = () => {
       dataIndex: 'name',
       width: '50%',
       editable: true,
+      sorter: (a: IUser, b: IUser) => a.name.localeCompare(b.name),
     },
     {
       title: 'lastName',
       dataIndex: 'lastName',
       width: '50%',
       editable: true,
+      sorter: (a: IUser, b: IUser) => a.lastName.localeCompare(b.lastName),
     },
     {
       title: 'operation',
