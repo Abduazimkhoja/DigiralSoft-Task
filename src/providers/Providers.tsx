@@ -10,7 +10,8 @@ interface IProviders {
 const Providers: FC<IProviders> = ({ children }) => {
   return (
     <StoreProvider>
-      <AntdRegistry>{children}</AntdRegistry>
+      {/* <AntdRegistry>{children}</AntdRegistry> */}
+      {children}
     </StoreProvider>
   );
 };
