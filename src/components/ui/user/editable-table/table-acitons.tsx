@@ -30,12 +30,14 @@ export const useUserTableActions = ({
     },
 
     onEdit(record: Partial<IUser>) {
-      form.setFieldsValue({
-        name: '',
-        avatar: '',
-        lastName: '',
-        ...record,
-      });
+      // form.setFieldsValue({
+      //   name: '',
+      //   avatar: '',
+      //   lastName: '',
+      //   ...record,
+      // });
+      console.log(record);
+      
       setEditingId(String(record.id));
     },
 
@@ -43,25 +45,26 @@ export const useUserTableActions = ({
       setEditingId('');
     },
 
-    async onSave(key: React.Key) {
+    async onSave(id: string) {
       try {
-        const row = (await form.validateFields()) as IUser;
+        // const row = (await form.validateFields()) as IUser;
+        console.log(id);
 
-        const newData = [...users];
-        const index = newData.findIndex((item) => key === item.id);
-        if (index > -1) {
-          const item = newData[index];
-          newData.splice(index, 1, {
-            ...item,
-            ...row,
-          });
-          setUsers(newData);
-          setEditingId('');
-        } else {
-          newData.push(row);
-          setUsers(newData);
-          setEditingId('');
-        }
+        // const newData = [...users];
+        // const index = newData.findIndex((item) => key === item.id);
+        // if (index > -1) {
+        //   const item = newData[index];
+        //   newData.splice(index, 1, {
+        //     ...item,
+        //     ...row,
+        //   });
+        //   setUsers(newData);
+        //   setEditingId('');
+        // } else {
+        //   newData.push(row);
+        //   setUsers(newData);
+        //   setEditingId('');
+        // }
       } catch (errInfo) {
         console.log('Validate Failed:', errInfo);
       }
