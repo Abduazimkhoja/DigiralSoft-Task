@@ -30,8 +30,9 @@ const UserDrawer: React.FC = () => {
     setOpen(false);
   };
 
-  const handleSubmit = (values: typeof initialValues) => {
-    dispatch(createUser(values));
+  const handleSubmit = async (values: typeof initialValues) => {
+    await dispatch(createUser(values));
+    dispatch(fetchUsers());
     onClose();
   };
 
