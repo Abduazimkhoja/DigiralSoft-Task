@@ -1,3 +1,9 @@
+export interface IUserBase {
+  name: string;
+  lastName: string;
+  avatar: string;
+}
+
 export interface IUser {
   id: string;
   name: string;

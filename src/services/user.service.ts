@@ -1,4 +1,4 @@
-import { IUser } from '@/types/user.interface';
+import { IUser, IUserBase } from '@/types/user.interface';
 
 const USERS = 'users';
 const BASE_URL = process.env.SERVER_URL;
@@ -26,7 +26,7 @@ export const UserService = {
     return response.json();
   },
 
-  async create(user: IUser) {
+  async create(user: IUserBase) {
     const response = await fetch(`${BASE_USER_URL}`, {
       method: 'POST',
       headers: {

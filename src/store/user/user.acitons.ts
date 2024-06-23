@@ -1,5 +1,4 @@
 import { UserService } from '@/services/user.service';
-import { IUser } from '@/types/user.interface';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchUsers = createAsyncThunk(
@@ -12,7 +11,7 @@ export const fetchUserById = createAsyncThunk(
   UserService.getById,
 );
 
-export const creteUser = createAsyncThunk(
+export const createUser = createAsyncThunk(
   'users/editUserById',
   UserService.create,
 );
