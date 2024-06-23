@@ -4,7 +4,6 @@ import {
   editUserById,
   fetchUsers,
 } from '@/store/user/user.acitons';
-import { setUsers } from '@/store/user/user.slice';
 import { IUser } from '@/types/user.interface';
 import { FormInstance } from 'antd/es/form';
 import { useEffect } from 'react';
@@ -56,6 +55,12 @@ export const useUserTableActions = ({
         const index = newData.findIndex((item) => key === item.id);
         if (index > -1) {
           const item = newData[index];
+          if (
+            item.name === row.name &&
+            item.lastName === row.lastName &&
+            item.avatar === row.avatar
+          )
+            return setEditingId('');
           newData.splice(index, 1, {
             ...item,
             ...row,
@@ -63,11 +68,9 @@ export const useUserTableActions = ({
 
           dispatch(editUserById({ ...item, ...row }));
 
-          setUsers(newData);
+          // setUsers(newData);
           setEditingId('');
         } else {
-          newData.push(row);
-          setUsers(newData);
           setEditingId('');
         }
       } catch (errInfo) {
